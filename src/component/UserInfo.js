@@ -17,7 +17,7 @@ const UserInfo = ({idToken}) => {
                         return (
                             <tr key={key}>
                                 <td style={{"textAlign": "left", "paddingRight": 25}}>{key}</td>
-                                <td style={{"textAlign": "left"}}>{i}</td>
+                                <td style={{"textAlign": "left"}}>{String(i)}</td>
                             </tr>
                         )
                     })
