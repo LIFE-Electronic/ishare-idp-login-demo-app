@@ -1,6 +1,6 @@
 import { jwtDecode } from 'jwt-decode'
 
-const UserInfo = ({idToken}) => {
+const UserInfo = ({idToken, accessToken}) => {
     if (!idToken) {
         return <div></div>
     }
@@ -22,7 +22,12 @@ const UserInfo = ({idToken}) => {
                         )
                     })
                 }
+                <tr>
+                    <td>AccessToken</td>
+                    <td><textarea defaultValue={accessToken} cols="110"></textarea></td>
+                </tr>
             </table>
+
         </div>
     )
 }

@@ -123,7 +123,7 @@ const Home = ({tokens, setTokens, certs, setCerts}) => {
         <div className="mdWrapper">
             <h1>Keycloak - iShare</h1>
             
-            {tokens ? <UserInfo idToken={tokens.id_token}/> : "Not logged in"}
+            {tokens ? <UserInfo idToken={tokens.id_token} accessToken={tokens.access_token}/> : "Not logged in"}
 
             <h1/>
             {tokens
