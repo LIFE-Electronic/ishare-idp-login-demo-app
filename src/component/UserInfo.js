@@ -8,6 +8,10 @@ const UserInfo = ({idToken, accessToken}) => {
     const tokenData = jwtDecode(idToken)
     console.log(tokenData)
 
+    const copyToClipboard = (text) => async () => {
+        await navigator.clipboard.writeText(text);
+    }
+
     return (
         <div>
             <h3>Logged In</h3>
@@ -24,11 +28,13 @@ const UserInfo = ({idToken, accessToken}) => {
                 }
                 <tr>
                     <td>AccessToken</td>
-                    <td><textarea defaultValue={accessToken} cols="110"></textarea></td>
+                    <td><textarea disabled defaultValue={accessToken} cols="80"></textarea></td>
+                    <td><button onClick={copyToClipboard(accessToken)}>Copy To Clipboard</button></td>
                 </tr>
                 <tr>
                     <td>IdToken</td>
-                    <td><textarea defaultValue={idToken} cols="110"></textarea></td>
+                    <td><textarea disabled defaultValue={idToken} cols="80"></textarea></td>
+                    <td><button onClick={copyToClipboard(idToken)}>Copy To Clipboard</button></td>
                 </tr>
             </table>
 
