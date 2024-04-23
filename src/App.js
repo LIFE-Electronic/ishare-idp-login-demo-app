@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useCallback} from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import Home from './component/Home'
+import Code from './component/Code'
 
-function App() {
+const getCerts = () => {
+
+  const defaultCertData = {
+    "idpEORI": "NL.EORI.LIFEELEC4DMI",
+    "idpUrl": "https://idp.dev.dexes.eu/realms/dmi_dexspace_smartcity",
+    "clientEORI": "<eori from certificate>",
+    "certEORI": ""
+  }
+
+  const data = localStorage.getItem("cert-data") || null
+  if (data == null) {
+    return defaultCertData
+  }
+
+  try {
+    const parsedData = JSON.parse(data)
+    if (parsedData.idpEORI == null) {
+      parsedData.idpEORI = defaultCertData.idpEORI
+    }
+    if (parsedData.idpUrl == null) {
+      parsedData.idpUrl = defaultCertData.idpUrl
+    }
+    if (parsedData.clientEORI == null) {
+      parsedData.clientEORI = defaultCertData.clientEORI
+    }
+    if (parsedData.certEORI == null) {
+      parsedData.certEORI = defaultCertData.certEORI
+    }
+    return parsedData
+  } catch {
+    return defaultCertData
+  }
+}
+
+const App = () => {
+  const [tokens, setTokens] = useState()
+  const [certs, setCerts] = useState(getCerts())
+
+  const setAndPersistCerts = useCallback((certs) => {
+    setCerts(certs)
+    localStorage.setItem("cert-data", JSON.stringify(certs))
+  }, [setCerts, certs])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route exact path="/" element={<Home tokens={tokens} setTokens={setTokens} certs={certs} setCerts={setAndPersistCerts} />} />
+        <Route path="/code" element={<Code setTokens={setTokens} certs={certs}/>} />
+      </Routes>
     </div>
   );
 }
+//<!--<Route path="/" element={<Navigate to="dashboard" />} /><!--<Route path="/" element={<Navigate to="dashboard" />} />
 
 export default App;
