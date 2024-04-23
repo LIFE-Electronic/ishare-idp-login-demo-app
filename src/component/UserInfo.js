@@ -10,7 +10,7 @@ const UserInfo = ({idToken, accessToken}) => {
 
     return (
         <div>
-            <h3>UserInfo</h3>
+            <h3>Logged In</h3>
             <table>
                 {
                     Object.entries(tokenData).map(([key, i]) => {
@@ -25,6 +25,10 @@ const UserInfo = ({idToken, accessToken}) => {
                 <tr>
                     <td>AccessToken</td>
                     <td><textarea defaultValue={accessToken} cols="110"></textarea></td>
+                </tr>
+                <tr>
+                    <td>IdToken</td>
+                    <td><textarea defaultValue={idToken} cols="110"></textarea></td>
                 </tr>
             </table>
 
