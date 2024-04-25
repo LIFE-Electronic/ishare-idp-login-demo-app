@@ -47,7 +47,7 @@ const Code = ({setTokens, certs}) => {
 
         params.append('grant_type', 'authorization_code')
         params.append('redirect_uri', getRedirectUrl())
-        params.append('client_id', certs.idpEORI)
+        params.append('client_id', certs.clientEORI)
         params.append('client_assertion', clientAssertion)
         params.append('code', code)
 

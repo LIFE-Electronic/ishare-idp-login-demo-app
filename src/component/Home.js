@@ -23,7 +23,8 @@ const Home = ({tokens, setTokens, certs, setCerts}) => {
 
         const params = new URLSearchParams
 
-        const clientId = certs.idpEORI
+        // our client
+        const clientId = certs.clientEORI
         const scope = 'openid ishare'
         const responseType = 'code'
         const redirectUri = getRedirectUrl()
@@ -50,7 +51,9 @@ const Home = ({tokens, setTokens, certs, setCerts}) => {
         const requestToken = await new jose.SignJWT(jwt_obj)
             .setProtectedHeader(headers)
             .setIssuedAt()
+            // issuer is our client
             .setIssuer(certs.clientEORI)
+            // audience is the idp
             .setAudience(certs.idpEORI)
             .setExpirationTime("30s")
             .sign(privateKey)
@@ -107,14 +110,6 @@ const Home = ({tokens, setTokens, certs, setCerts}) => {
         })
     }, [certs, setCerts])
 
-
-    const saveCertEORI = useCallback((value) => {
-        setCerts({
-            ...certs,
-            certEORI: value,
-        })
-    }, [certs, setCerts])
-
     const isButtonDisabled = !(certs.privKey && certs.privKey.length > 0 && certs.certChain && certs.certChain.length > 0)
 
     console.log('tokens', tokens)
@@ -134,20 +129,24 @@ const Home = ({tokens, setTokens, certs, setCerts}) => {
             <table>
                 <tbody>
                     <tr>
-                        <td style={{"paddingRight": "10px"}}>Cert EORI</td>
-                        <td><textarea defaultValue={certs.clientEORI} cols="30" onChange={e => saveClientEORI(e.target.value)}></textarea></td>
-                    </tr>
-                    <tr>
-                        <td style={{"paddingRight": "10px"}}>IDP EORI</td>
+                        <td style={{"paddingRight": "30px"}}>IDP EORI</td>
                         <td><textarea defaultValue={certs.idpEORI} cols="30" onChange={e => saveIDPEori(e.target.value)}></textarea></td>
                     </tr>
                     <tr>
-                        <td style={{"paddingRight": "10px"}}>IDP URL</td>
+                        <td style={{"paddingRight": "25px"}}>IDP URL</td>
                         <td><textarea defaultValue={certs.idpUrl} cols="30" onChange={e => saveIDPURL(e.target.value)}></textarea></td>
                     </tr>
                 </tbody>
             </table>
             <h1>Certificate Stuff</h1>
+            <table>
+                <tbody>
+                    <tr>
+                        <td style={{"paddingRight": "10px"}}>Client EORI</td>
+                        <td><textarea defaultValue={certs.clientEORI} cols="30" onChange={e => saveClientEORI(e.target.value)}></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
             <table>
                 <thead>
                     <tr>

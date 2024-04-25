@@ -19,10 +19,10 @@ const getCerts = () => {
 
   try {
     const parsedData = JSON.parse(data)
-    if (parsedData.idpEORI == null) {
+    if (parsedData.idpEORI == null || parsedData.idpEORI == "") {
       parsedData.idpEORI = defaultCertData.idpEORI
     }
-    if (parsedData.idpUrl == null) {
+    if (parsedData.idpUrl == null || parsedData.idpUrl == "") {
       parsedData.idpUrl = defaultCertData.idpUrl
     }
     if (parsedData.clientEORI == null) {
