@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserInfo from './UserInfo'
 import getX5C from '../util/getX5C';
@@ -14,6 +14,8 @@ const makeAuthUrl = (baseUrl) => {
 const Home = ({tokens, setTokens, certs, setCerts}) => {
 
     //const location = useLocation()
+
+    const [userInfoToken, setUserInfoToken] = useState()
 
     console.log(window.location.href)
 
@@ -112,13 +114,23 @@ const Home = ({tokens, setTokens, certs, setCerts}) => {
 
     const isButtonDisabled = !(certs.privKey && certs.privKey.length > 0 && certs.certChain && certs.certChain.length > 0)
 
-    console.log('tokens', tokens)
+    if (tokens && tokens.access_token && !userInfoToken) {
+        const infoUrl = `${certs.idpUrl}/protocol/openid-connect/userinfo`
+        fetch(infoUrl, {
+            mode: 'cors',
+            headers: {
+                'Authorization': `Bearer ${tokens.access_token}`
+            }
+        }).then(resp => resp.text()).then(token => {
+            setUserInfoToken(token)
+        }).catch(console.error)
+    }
 
     return (
         <div className="mdWrapper">
             <h1>Keycloak - iShare</h1>
             
-            {tokens ? <UserInfo idToken={tokens.id_token} accessToken={tokens.access_token}/> : "Not logged in"}
+            {tokens ? <UserInfo idToken={tokens.id_token} accessToken={tokens.access_token} userInfoToken={userInfoToken}/> : "Not logged in"}
 
             <h1/>
             {tokens
