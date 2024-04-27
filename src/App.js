@@ -2,6 +2,7 @@ import React, {useState, useCallback} from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Home from './component/Home'
 import Code from './component/Code'
+import { PolicyStore } from './component/PolicyStore';
 
 const getCerts = () => {
 
@@ -51,6 +52,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Home tokens={tokens} setTokens={setTokens} certs={certs} setCerts={setAndPersistCerts} />} />
         <Route path="/code" element={<Code setTokens={setTokens} certs={certs}/>} />
+        <Route path="/policy-store" element={<PolicyStore />} />
       </Routes>
     </div>
   );
