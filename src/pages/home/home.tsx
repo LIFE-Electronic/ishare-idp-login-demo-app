@@ -71,26 +71,6 @@ export function Home() {
       ) : (
         <SignIn backendUrl={backendUrl} />
       )}
-      {/* <form>
-        <label style={{ paddingRight: "20px" }}>Backend url</label>
-        <input
-          value={backendUrl}
-          onChange={(e) => setBackendUrl(e.target.value)}
-        />
-      </form>
-
-      
-        get access token
-      </a>
-
-      {token && (
-        <div style={{ maxWidth: 440 }}>
-          <h2>Token</h2>
-          <textarea disabled cols={50} value={token}></textarea>
-          <br></br>
-          <button onClick={copyToClipboard(token)}>Copy</button>
-        </div>
-      )} */}
     </section>
   );
 }
