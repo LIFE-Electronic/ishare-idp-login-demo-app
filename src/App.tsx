@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Home from "./component/Home";
+import { Home } from "./pages/home/home";
 import Code from "./component/Code";
-import { PolicyStore } from "./component/PolicyStore";
+import LowLevel from "./component/LowLevel";
 
 const getCerts = () => {
   const defaultCertData = {
@@ -42,6 +42,7 @@ const App = () => {
   const [certs, setCerts] = useState(getCerts());
 
   const setAndPersistCerts = useCallback(
+    // @ts-ignore
     (certs) => {
       setCerts(certs);
       localStorage.setItem("cert-data", JSON.stringify(certs));
@@ -50,27 +51,24 @@ const App = () => {
   );
 
   return (
-    <div>
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <Home
-              tokens={tokens}
-              setTokens={setTokens}
-              certs={certs}
-              setCerts={setAndPersistCerts}
-            />
-          }
-        />
-        <Route
-          path="/code"
-          element={<Code setTokens={setTokens} certs={certs} />}
-        />
-        <Route path="/policy-store" element={<PolicyStore />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route
+        path="/lowlevel-hacker"
+        element={
+          <LowLevel
+            tokens={tokens}
+            setTokens={setTokens}
+            certs={certs}
+            setCerts={setAndPersistCerts}
+          />
+        }
+      />
+      <Route
+        path="/lowlevel-hacker/code"
+        element={<Code setTokens={setTokens} certs={certs} />}
+      />
+      <Route path="/" element={<Home />} />
+    </Routes>
   );
 };
 //<!--<Route path="/" element={<Navigate to="dashboard" />} /><!--<Route path="/" element={<Navigate to="dashboard" />} />

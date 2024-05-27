@@ -74,7 +74,7 @@ const Code = ({ setTokens, certs }) => {
       })
       .then((resp) => {
         setTokens(resp);
-        navigate("/");
+        navigate("/lowlevel-hacker");
       })
       .catch((err) => {
         console.error("err", err);
@@ -83,7 +83,7 @@ const Code = ({ setTokens, certs }) => {
   }, [error]);
 
   const backToRoot = () => {
-    navigate("/");
+    navigate("/lowlevel-hacker");
   };
 
   return (

@@ -9,7 +9,7 @@ const makeAuthUrl = (baseUrl) => {
   return `${baseUrl}/protocol/openid-connect/auth`;
 };
 
-const Home = ({ tokens, setTokens, certs, setCerts }) => {
+const LowLevel = ({ tokens, setTokens, certs, setCerts }) => {
   //const location = useLocation()
 
   const [userInfoToken, setUserInfoToken] = useState();
@@ -242,4 +242,4 @@ const Home = ({ tokens, setTokens, certs, setCerts }) => {
   );
 };
 
-export default Home;
+export default LowLevel;

@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+body {
+  background: hsla(344, 50%, 45%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(344, 50%, 45%, 0.15) 0%,
+    hsla(300, 80%, 10%, 0.15) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(344, 50%, 45%, 0.15) 0%,
+    hsla(300, 80%, 10%, 0.15) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(344, 50%, 45%, 0.15) 0%,
+    hsla(300, 80%, 10%, 0.15) 100%
+  );
+}
+
+/* linear-gradient(to right, hsla(344, 50%, 45.13%, 0.15) 0.42%, hsla(300, 79.72%, 9.99%, 0.46)) */

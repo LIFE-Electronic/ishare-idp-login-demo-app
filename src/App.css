@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,26 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+body {
+  background: hsla(344, 50%, 45%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(344, 50%, 45%, 1) 0%,
+    hsla(300, 80%, 10%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(344, 50%, 45%, 1) 0%,
+    hsla(300, 80%, 10%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(344, 50%, 45%, 1) 0%,
+    hsla(300, 80%, 10%, 1) 100%
+  );
 }
