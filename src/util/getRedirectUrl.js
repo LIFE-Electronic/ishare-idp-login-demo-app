@@ -1,7 +1,7 @@
-import getBaseUrl from "./getBaseUrl"
+import getBaseUrl from "./getBaseUrl";
 
 const getRedirectUrl = () => {
-    return getBaseUrl() + "/code"
-}
+  return getBaseUrl() + "/code";
+};
 
-export default getRedirectUrl
+export default getRedirectUrl;
