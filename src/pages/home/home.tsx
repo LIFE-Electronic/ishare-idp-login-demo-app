@@ -62,7 +62,7 @@ function DisplayToken({ token }: { token: string }) {
 export function Home() {
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get("token");
-  const backendUrl = urlParams.get("backend_url") || "http://localhost:3000";
+  const backendUrl = urlParams.get("backend_url") || "https://clearing.dev.dexes.eu";
 
   return (
     <section className={styles.container}>
